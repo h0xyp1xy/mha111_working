@@ -20,9 +20,9 @@ export default defineConfig({
     },
   },
   build: {
-    // Match common Django/CRA conventions (backend expects frontend/build/static)
     outDir: 'build',
-    assetsDir: 'static',
+    // Keep frontend assets under /assets to avoid clashing with Django /static
+    assetsDir: 'assets',
     // Optimize build output
     target: 'esnext',
     // Aggressive minification with esbuild (fastest and most efficient)
@@ -35,9 +35,9 @@ export default defineConfig({
         // Compact output
         compact: true,
         // Minify chunk file names
-        entryFileNames: 'static/[name]-[hash].js',
-        chunkFileNames: 'static/[name]-[hash].js',
-        assetFileNames: 'static/[name]-[hash].[ext]',
+        entryFileNames: 'assets/[name]-[hash].js',
+        chunkFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash].[ext]',
         manualChunks: {
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
           'ui-vendor': ['framer-motion'],

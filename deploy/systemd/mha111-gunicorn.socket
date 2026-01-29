@@ -1,0 +1,12 @@
+[Unit]
+Description=mha111 gunicorn socket
+
+[Socket]
+ListenStream=/run/mha111/gunicorn.sock
+SocketUser=www-data
+SocketGroup=www-data
+SocketMode=0660
+
+[Install]
+WantedBy=sockets.target
+

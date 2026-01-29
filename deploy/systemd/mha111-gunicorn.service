@@ -1,0 +1,30 @@
+[Unit]
+Description=mha111 Django app (gunicorn)
+Requires=mha111-gunicorn.socket
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=notify
+User=mha111
+Group=www-data
+WorkingDirectory=/srv/mha111/app/backend
+
+# Environment file you create on the server (SECRET_KEY, DB_*, etc.)
+EnvironmentFile=/etc/mha111/mha111.env
+
+ExecStart=/srv/mha111/venv/bin/gunicorn config.wsgi:application \
+  --bind unix:/run/mha111/gunicorn.sock \
+  --workers 3 \
+  --timeout 120 \
+  --access-logfile - \
+  --error-logfile -
+
+Restart=on-failure
+RestartSec=5
+KillSignal=SIGQUIT
+TimeoutStopSec=30
+
+[Install]
+WantedBy=multi-user.target
+

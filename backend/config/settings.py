@@ -19,8 +19,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # ============================================================================
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# Default to False for production, set DJANGO_DEBUG=True in .env for development
-DEBUG = os.getenv('DJANGO_DEBUG', 'False').lower() in ('true', '1', 'yes')
+# Default to False for production.
+# Accept both DJANGO_DEBUG and DEBUG (templates in this repo vary).
+DEBUG = os.getenv('DJANGO_DEBUG', os.getenv('DEBUG', 'False')).lower() in ('true', '1', 'yes')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY')
@@ -211,17 +212,17 @@ USE_TZ = True
 # STATIC FILES
 # ============================================================================
 
-STATIC_URL = '/static/'
-STATIC_ROOT = '/var/www/newmood.space/static/'
+STATIC_URL = os.getenv('STATIC_URL', '/static/')
+STATIC_ROOT = os.getenv('STATIC_ROOT', '/var/www/newmood.space/static/')
 # STATICFILES_DIRS - React build files
 # Note: BASE_DIR is backend/, so we go up one level to reach frontend/
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR.parent, 'frontend/build/static'),  # React build files
-] if os.path.exists(os.path.join(BASE_DIR.parent, 'frontend/build/static')) else []
+    os.path.join(BASE_DIR.parent, 'frontend/build/assets'),  # React build files (Vite assets)
+] if os.path.exists(os.path.join(BASE_DIR.parent, 'frontend/build/assets')) else []
 
 # Media files
-MEDIA_URL = '/media/'
-MEDIA_ROOT = '/var/www/newmood.space/media/'
+MEDIA_URL = os.getenv('MEDIA_URL', '/media/')
+MEDIA_ROOT = os.getenv('MEDIA_ROOT', '/var/www/newmood.space/media/')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -261,10 +262,12 @@ else:
     ]
 
 # SECURITY: Proxy SSL header configuration (for reverse proxy/load balancer)
-# If behind a reverse proxy (nginx, Apache, etc.), uncomment and configure:
-# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-# USE_X_FORWARDED_HOST = True
-# USE_X_FORWARDED_PORT = True
+# If you terminate TLS in nginx (recommended), Django needs this to know the
+# original scheme and avoid HTTPS redirect loops.
+if not DEBUG:
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    USE_X_FORWARDED_HOST = True
+    USE_X_FORWARDED_PORT = True
 
 
 # ============================================================================
