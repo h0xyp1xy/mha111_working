@@ -1,0 +1,18 @@
+# Ensure all icons are served with correct MIME types and caching
+<IfModule mod_mime.c>
+    AddType image/png .png
+    AddType image/svg+xml .svg
+    AddType application/manifest+json .json
+</IfModule>
+
+# Cache icons for 1 year
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+</IfModule>
+
+# Enable CORS for manifest and icons (if needed)
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+</IfModule>

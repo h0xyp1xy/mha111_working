@@ -1,0 +1,813 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Primary - Serene Teal */
+  --primary-50: #F0F7F5;
+  --primary-100: #E1EFEC;
+  --primary-200: #C3DFD9;
+  --primary-300: #A5CFC6;
+  --primary-400: #78B7AA;
+  --primary-500: #4A9B8C;
+  --primary-600: #3D8275;
+  --primary-700: #30685E;
+  --primary-800: #244E47;
+  --primary-900: #173430;
+
+  /* Supporting Blues */
+  --blue-soft: #6BAED6;
+  --blue-calm: #4292C6;
+
+  /* Warm Neutrals */
+  --warm-gray: #F8F9FA;
+  --warm-white: #FDFDFD;
+  --soft-gray: #E9ECEF;
+
+  /* Emotional State Colors */
+  --anxiety-soft: #FFB347;
+  --calm-soft: #4A9B8C;
+  --hope-soft: #74C69D;
+  --support-soft: #9B8CC4;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* Font optimization: fallback fonts for faster rendering */
+  font-family: 'Comfortaa', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif !important;
+}
+
+/* Font loading optimization */
+@font-face {
+  font-family: 'Comfortaa';
+  font-display: swap; /* Show fallback font immediately, swap when loaded */
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-display: swap; /* Show fallback font immediately, swap when loaded */
+}
+
+/* Minimal transparent scrollbar without arrows */
+*::-webkit-scrollbar {
+  width: 30px;
+  height: 30px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--primary-900);
+  border-radius: 10px;
+  border: none;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-700);
+}
+
+*::-webkit-scrollbar-button {
+  display: none;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-900) transparent;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--primary-50);
+  color: var(--primary-900);
+  min-height: 100vh;
+  line-height: 1.6;
+  font-feature-settings: 'kern' 1, 'liga' 1;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+/* Selection color */
+::selection {
+  background: var(--primary-200);
+  color: var(--primary-900);
+}
+
+::-moz-selection {
+  background: var(--primary-200);
+  color: var(--primary-900);
+}
+
+/* Scrollbar hiding for mobile navigation */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Smooth transitions for all interactive elements */
+a, button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Range slider custom styling */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--primary-500);
+  cursor: pointer;
+  box-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.2),
+    0 0 0 4px rgba(74, 155, 140, 0.1);
+  transition: all 0.2s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+  box-shadow: 
+    0 3px 6px rgba(0, 0, 0, 0.3),
+    0 0 0 5px rgba(74, 155, 140, 0.15);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--primary-500);
+  cursor: pointer;
+  border: none;
+  box-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.2),
+    0 0 0 4px rgba(74, 155, 140, 0.1);
+  transition: all 0.2s ease;
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+  transform: scale(1.1);
+  box-shadow: 
+    0 3px 6px rgba(0, 0, 0, 0.3),
+    0 0 0 5px rgba(74, 155, 140, 0.15);
+}
+
+/* Improved touch targets for mobile */
+@media (max-width: 640px) {
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Neumorphism Utilities */
+.neu-card {
+  background: var(--primary-50);
+  border-radius: 1rem;
+  box-shadow: 
+    4px 4px 8px rgba(0, 0, 0, 0.2),
+    -4px -4px 8px rgba(255, 255, 255, 1);
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.neu-card:hover {
+  box-shadow: 
+    3px 3px 6px rgba(0, 0, 0, 0.15),
+    -3px -3px 6px rgba(255, 255, 255, 1);
+}
+
+.neu-card-inset {
+  background: var(--primary-50);
+  border-radius: 1rem;
+  box-shadow: 
+    inset 3px 3px 6px rgba(0, 0, 0, 0.15),
+    inset -3px -3px 6px rgba(255, 255, 255, 1);
+  border: none;
+}
+
+.neu-button-inset {
+  background: transparent;
+  border-radius: 1rem;
+  box-shadow: 
+    inset 3px 3px 6px rgba(0, 0, 0, 0.15),
+    inset -3px -3px 6px rgba(255, 255, 255, 1);
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.neu-button-inset:hover {
+  background: rgba(240, 247, 245, 0.5);
+  box-shadow: 
+    inset 4px 4px 8px rgba(0, 0, 0, 0.18),
+    inset -4px -4px 8px rgba(255, 255, 255, 1);
+}
+
+.neu-button {
+  background: var(--primary-50);
+  border-radius: 0.75rem;
+  box-shadow: 
+    4px 4px 8px rgba(0, 0, 0, 0.2),
+    -4px -4px 8px rgba(255, 255, 255, 1);
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.neu-button:hover {
+  box-shadow: 
+    3px 3px 6px rgba(0, 0, 0, 0.18),
+    -3px -3px 6px rgba(255, 255, 255, 1);
+}
+
+.neu-button:active {
+  box-shadow: 
+    inset 3px 3px 6px rgba(0, 0, 0, 0.25),
+    inset -3px -3px 6px rgba(255, 255, 255, 1);
+}
+
+.neu-button-primary {
+  background: var(--primary-500);
+  color: white;
+  border-radius: 0.75rem;
+  box-shadow: 
+    4px 4px 8px rgba(74, 155, 140, 0.55),
+    -4px -4px 8px rgba(240, 247, 245, 0.8);
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.neu-button-primary:hover {
+  box-shadow: 
+    3px 3px 6px rgba(74, 155, 140, 0.5),
+    -3px -3px 6px rgba(240, 247, 245, 0.9);
+}
+
+.neu-button-primary:active {
+  box-shadow: 
+    inset 3px 3px 6px rgba(0, 0, 0, 0.4),
+    inset -3px -3px 6px rgba(255, 255, 255, 0.2);
+}
+
+.neu-input {
+  background: var(--primary-50);
+  border-radius: 0.75rem;
+  box-shadow: 
+    inset 4px 4px 8px rgba(0, 0, 0, 0.18),
+    inset -4px -4px 8px rgba(255, 255, 255, 1);
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.neu-input:focus {
+  box-shadow: 
+    inset 5px 5px 10px rgba(0, 0, 0, 0.22),
+    inset -5px -5px 10px rgba(255, 255, 255, 1),
+    0 0 0 3px rgba(74, 155, 140, 0.1);
+  outline: none;
+}
+
+.neu-nav {
+  background: var(--primary-50);
+  box-shadow: 
+    0 4px 8px rgba(0, 0, 0, 0.15),
+    0 -2px 4px rgba(255, 255, 255, 1);
+}
+
+.neu-mood-button {
+  background: var(--primary-50);
+  border-radius: 0.75rem;
+  box-shadow: 
+    5px 5px 10px rgba(0, 0, 0, 0.25),
+    -5px -5px 10px rgba(255, 255, 255, 1);
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.neu-mood-button:hover {
+  box-shadow: 
+    4px 4px 8px rgba(0, 0, 0, 0.2),
+    -4px -4px 8px rgba(255, 255, 255, 1);
+}
+
+.neu-mood-button:active {
+  box-shadow: 
+    inset 4px 4px 8px rgba(0, 0, 0, 0.2),
+    inset -4px -4px 8px rgba(255, 255, 255, 1);
+  transform: scale(0.98);
+}
+
+.neu-mood-button.active {
+  background: var(--primary-50);
+  color: var(--primary-900);
+  box-shadow: 
+    inset 5px 5px 10px rgba(0, 0, 0, 0.18),
+    inset -5px -5px 10px rgba(255, 255, 255, 1);
+  outline: none !important;
+}
+
+.neu-mood-button:focus {
+  outline: none !important;
+}
+
+/* Circular button styles for homepage */
+.neu-circle-button {
+  background: var(--primary-50);
+  border-radius: 50%;
+  box-shadow: 
+    5px 5px 10px rgba(0, 0, 0, 0.22),
+    -5px -5px 10px rgba(255, 255, 255, 1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.neu-circle-button:hover {
+  box-shadow: 
+    4px 4px 8px rgba(0, 0, 0, 0.18),
+    -4px -4px 8px rgba(255, 255, 255, 1),
+    0 0 0 2px rgba(74, 155, 140, 0.1);
+  transform: translateY(-2px);
+  background: var(--primary-100);
+}
+
+.neu-circle-button:active {
+  box-shadow: 
+    inset 3px 3px 6px rgba(0, 0, 0, 0.25),
+    inset -3px -3px 6px rgba(255, 255, 255, 1);
+  transform: translateY(0);
+}
+
+/* Enhanced input styles */
+.neu-input::placeholder {
+  color: rgba(23, 52, 48, 0.4);
+  font-size: calc(1rem + 1px);
+}
+
+.neu-input:focus::placeholder {
+  font-size: calc(1rem + 2px);
+}
+
+/* Progress bar styles */
+.neu-progress-bar {
+  background: var(--primary-200);
+  border-radius: 9999px;
+  box-shadow: 
+    inset 4px 4px 8px rgba(0, 0, 0, 0.18),
+    inset -4px -4px 8px rgba(255, 255, 255, 1);
+  overflow: hidden;
+}
+
+.neu-progress-fill {
+  background: linear-gradient(90deg, var(--primary-500), var(--primary-400));
+  border-radius: 9999px;
+  box-shadow: 
+    0 2px 4px rgba(74, 155, 140, 0.3),
+    inset 0 1px 2px rgba(255, 255, 255, 0.3);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.neu-progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Focus visible for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--primary-500);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Carpet animation for homepage title - появляется справа налево, пауза, исчезает слева направо в стиле неоморфизма */
+.carpet-roll-animation {
+  position: relative;
+  overflow: visible;
+  padding-bottom: 0.2em;
+  animation: title-appear-right-to-left 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards,
+             title-pause 1.5s ease-in-out 2.5s forwards,
+             title-disappear-left-to-right 2.5s cubic-bezier(0.4, 0, 0.2, 1) 4s forwards;
+}
+
+/* Появление текста справа налево - полностью появляется */
+@keyframes title-appear-right-to-left {
+  0% {
+    clip-path: inset(0 100% 0 0 round 999px);
+    -webkit-clip-path: inset(0 100% 0 0 round 999px);
+    transform: translateX(0);
+    opacity: 0;
+  }
+  0.1% { clip-path: inset(0 99.9% 0 0 round 999px); -webkit-clip-path: inset(0 99.9% 0 0 round 999px); }
+  0.2% { clip-path: inset(0 99.8% 0 0 round 999px); -webkit-clip-path: inset(0 99.8% 0 0 round 999px); }
+  0.3% { clip-path: inset(0 99.7% 0 0 round 999px); -webkit-clip-path: inset(0 99.7% 0 0 round 999px); }
+  0.4% { clip-path: inset(0 99.6% 0 0 round 999px); -webkit-clip-path: inset(0 99.6% 0 0 round 999px); }
+  0.5% { clip-path: inset(0 99.5% 0 0 round 999px); -webkit-clip-path: inset(0 99.5% 0 0 round 999px); }
+  1% { clip-path: inset(0 99% 0 0 round 999px); -webkit-clip-path: inset(0 99% 0 0 round 999px); }
+  2% { clip-path: inset(0 98% 0 0 round 999px); -webkit-clip-path: inset(0 98% 0 0 round 999px); }
+  3% { clip-path: inset(0 97% 0 0 round 999px); -webkit-clip-path: inset(0 97% 0 0 round 999px); }
+  4% { clip-path: inset(0 96% 0 0 round 999px); -webkit-clip-path: inset(0 96% 0 0 round 999px); }
+  5% { clip-path: inset(0 95% 0 0 round 999px); -webkit-clip-path: inset(0 95% 0 0 round 999px); }
+  6% { clip-path: inset(0 94% 0 0 round 999px); -webkit-clip-path: inset(0 94% 0 0 round 999px); }
+  7% { clip-path: inset(0 93% 0 0 round 999px); -webkit-clip-path: inset(0 93% 0 0 round 999px); }
+  8% { clip-path: inset(0 92% 0 0 round 999px); -webkit-clip-path: inset(0 92% 0 0 round 999px); }
+  9% { clip-path: inset(0 91% 0 0 round 999px); -webkit-clip-path: inset(0 91% 0 0 round 999px); }
+  10% { clip-path: inset(0 90% 0 0 round 999px); -webkit-clip-path: inset(0 90% 0 0 round 999px); }
+  11% { clip-path: inset(0 89% 0 0 round 999px); -webkit-clip-path: inset(0 89% 0 0 round 999px); }
+  12% { clip-path: inset(0 88% 0 0 round 999px); -webkit-clip-path: inset(0 88% 0 0 round 999px); }
+  13% { clip-path: inset(0 87% 0 0 round 999px); -webkit-clip-path: inset(0 87% 0 0 round 999px); }
+  14% { clip-path: inset(0 86% 0 0 round 999px); -webkit-clip-path: inset(0 86% 0 0 round 999px); }
+  15% { clip-path: inset(0 85% 0 0 round 999px); -webkit-clip-path: inset(0 85% 0 0 round 999px); }
+  16% { clip-path: inset(0 84% 0 0 round 999px); -webkit-clip-path: inset(0 84% 0 0 round 999px); }
+  17% { clip-path: inset(0 83% 0 0 round 999px); -webkit-clip-path: inset(0 83% 0 0 round 999px); }
+  18% { clip-path: inset(0 82% 0 0 round 999px); -webkit-clip-path: inset(0 82% 0 0 round 999px); }
+  19% { clip-path: inset(0 81% 0 0 round 999px); -webkit-clip-path: inset(0 81% 0 0 round 999px); }
+  20% { clip-path: inset(0 80% 0 0 round 999px); -webkit-clip-path: inset(0 80% 0 0 round 999px); }
+  21% { clip-path: inset(0 79% 0 0 round 999px); -webkit-clip-path: inset(0 79% 0 0 round 999px); }
+  22% { clip-path: inset(0 78% 0 0 round 999px); -webkit-clip-path: inset(0 78% 0 0 round 999px); }
+  23% { clip-path: inset(0 77% 0 0 round 999px); -webkit-clip-path: inset(0 77% 0 0 round 999px); }
+  24% { clip-path: inset(0 76% 0 0 round 999px); -webkit-clip-path: inset(0 76% 0 0 round 999px); }
+  25% {
+    clip-path: inset(0 75% 0 0 round 999px);
+    -webkit-clip-path: inset(0 75% 0 0 round 999px);
+    transform: translateX(0);
+  }
+  26% { clip-path: inset(0 74% 0 0 round 999px); -webkit-clip-path: inset(0 74% 0 0 round 999px); }
+  27% { clip-path: inset(0 73% 0 0 round 999px); -webkit-clip-path: inset(0 73% 0 0 round 999px); }
+  28% { clip-path: inset(0 72% 0 0 round 999px); -webkit-clip-path: inset(0 72% 0 0 round 999px); }
+  29% { clip-path: inset(0 71% 0 0 round 999px); -webkit-clip-path: inset(0 71% 0 0 round 999px); }
+  30% { clip-path: inset(0 70% 0 0 round 999px); -webkit-clip-path: inset(0 70% 0 0 round 999px); }
+  31% { clip-path: inset(0 69% 0 0 round 999px); -webkit-clip-path: inset(0 69% 0 0 round 999px); }
+  32% { clip-path: inset(0 68% 0 0 round 999px); -webkit-clip-path: inset(0 68% 0 0 round 999px); }
+  33% { clip-path: inset(0 67% 0 0 round 999px); -webkit-clip-path: inset(0 67% 0 0 round 999px); }
+  34% { clip-path: inset(0 66% 0 0 round 999px); -webkit-clip-path: inset(0 66% 0 0 round 999px); }
+  35% { clip-path: inset(0 65% 0 0 round 999px); -webkit-clip-path: inset(0 65% 0 0 round 999px); }
+  36% { clip-path: inset(0 64% 0 0 round 999px); -webkit-clip-path: inset(0 64% 0 0 round 999px); }
+  37% { clip-path: inset(0 63% 0 0 round 999px); -webkit-clip-path: inset(0 63% 0 0 round 999px); }
+  38% { clip-path: inset(0 62% 0 0 round 999px); -webkit-clip-path: inset(0 62% 0 0 round 999px); }
+  39% { clip-path: inset(0 61% 0 0 round 999px); -webkit-clip-path: inset(0 61% 0 0 round 999px); }
+  40% { clip-path: inset(0 60% 0 0 round 999px); -webkit-clip-path: inset(0 60% 0 0 round 999px); }
+  41% { clip-path: inset(0 59% 0 0 round 999px); -webkit-clip-path: inset(0 59% 0 0 round 999px); }
+  42% { clip-path: inset(0 58% 0 0 round 999px); -webkit-clip-path: inset(0 58% 0 0 round 999px); }
+  43% { clip-path: inset(0 57% 0 0 round 999px); -webkit-clip-path: inset(0 57% 0 0 round 999px); }
+  44% { clip-path: inset(0 56% 0 0 round 999px); -webkit-clip-path: inset(0 56% 0 0 round 999px); }
+  45% { clip-path: inset(0 55% 0 0 round 999px); -webkit-clip-path: inset(0 55% 0 0 round 999px); }
+  46% { clip-path: inset(0 54% 0 0 round 999px); -webkit-clip-path: inset(0 54% 0 0 round 999px); }
+  47% { clip-path: inset(0 53% 0 0 round 999px); -webkit-clip-path: inset(0 53% 0 0 round 999px); }
+  48% { clip-path: inset(0 52% 0 0 round 999px); -webkit-clip-path: inset(0 52% 0 0 round 999px); }
+  49% { clip-path: inset(0 51% 0 0 round 999px); -webkit-clip-path: inset(0 51% 0 0 round 999px); }
+  50% {
+    clip-path: inset(0 50% 0 0 round 999px);
+    -webkit-clip-path: inset(0 50% 0 0 round 999px);
+    transform: translateX(0);
+  }
+  51% { clip-path: inset(0 49% 0 0 round 999px); -webkit-clip-path: inset(0 49% 0 0 round 999px); }
+  52% { clip-path: inset(0 48% 0 0 round 999px); -webkit-clip-path: inset(0 48% 0 0 round 999px); }
+  53% { clip-path: inset(0 47% 0 0 round 999px); -webkit-clip-path: inset(0 47% 0 0 round 999px); }
+  54% { clip-path: inset(0 46% 0 0 round 999px); -webkit-clip-path: inset(0 46% 0 0 round 999px); }
+  55% { clip-path: inset(0 45% 0 0 round 999px); -webkit-clip-path: inset(0 45% 0 0 round 999px); }
+  56% { clip-path: inset(0 44% 0 0 round 999px); -webkit-clip-path: inset(0 44% 0 0 round 999px); }
+  57% { clip-path: inset(0 43% 0 0 round 999px); -webkit-clip-path: inset(0 43% 0 0 round 999px); }
+  58% { clip-path: inset(0 42% 0 0 round 999px); -webkit-clip-path: inset(0 42% 0 0 round 999px); }
+  59% { clip-path: inset(0 41% 0 0 round 999px); -webkit-clip-path: inset(0 41% 0 0 round 999px); }
+  60% { clip-path: inset(0 40% 0 0 round 999px); -webkit-clip-path: inset(0 40% 0 0 round 999px); }
+  61% { clip-path: inset(0 39% 0 0 round 999px); -webkit-clip-path: inset(0 39% 0 0 round 999px); }
+  62% { clip-path: inset(0 38% 0 0 round 999px); -webkit-clip-path: inset(0 38% 0 0 round 999px); }
+  63% { clip-path: inset(0 37% 0 0 round 999px); -webkit-clip-path: inset(0 37% 0 0 round 999px); }
+  64% { clip-path: inset(0 36% 0 0 round 999px); -webkit-clip-path: inset(0 36% 0 0 round 999px); }
+  65% { clip-path: inset(0 35% 0 0 round 999px); -webkit-clip-path: inset(0 35% 0 0 round 999px); }
+  66% { clip-path: inset(0 34% 0 0 round 999px); -webkit-clip-path: inset(0 34% 0 0 round 999px); }
+  67% { clip-path: inset(0 33% 0 0 round 999px); -webkit-clip-path: inset(0 33% 0 0 round 999px); }
+  68% { clip-path: inset(0 32% 0 0 round 999px); -webkit-clip-path: inset(0 32% 0 0 round 999px); }
+  69% { clip-path: inset(0 31% 0 0 round 999px); -webkit-clip-path: inset(0 31% 0 0 round 999px); }
+  70% { clip-path: inset(0 30% 0 0 round 999px); -webkit-clip-path: inset(0 30% 0 0 round 999px); }
+  71% { clip-path: inset(0 29% 0 0 round 999px); -webkit-clip-path: inset(0 29% 0 0 round 999px); }
+  72% { clip-path: inset(0 28% 0 0 round 999px); -webkit-clip-path: inset(0 28% 0 0 round 999px); }
+  73% { clip-path: inset(0 27% 0 0 round 999px); -webkit-clip-path: inset(0 27% 0 0 round 999px); }
+  74% { clip-path: inset(0 26% 0 0 round 999px); -webkit-clip-path: inset(0 26% 0 0 round 999px); }
+  75% {
+    clip-path: inset(0 25% 0 0 round 999px);
+    -webkit-clip-path: inset(0 25% 0 0 round 999px);
+    transform: translateX(0);
+  }
+  76% { clip-path: inset(0 24% 0 0 round 999px); -webkit-clip-path: inset(0 24% 0 0 round 999px); }
+  77% { clip-path: inset(0 23% 0 0 round 999px); -webkit-clip-path: inset(0 23% 0 0 round 999px); }
+  78% { clip-path: inset(0 22% 0 0 round 999px); -webkit-clip-path: inset(0 22% 0 0 round 999px); }
+  79% { clip-path: inset(0 21% 0 0 round 999px); -webkit-clip-path: inset(0 21% 0 0 round 999px); }
+  80% { clip-path: inset(0 20% 0 0 round 999px); -webkit-clip-path: inset(0 20% 0 0 round 999px); }
+  81% { clip-path: inset(0 19% 0 0 round 999px); -webkit-clip-path: inset(0 19% 0 0 round 999px); }
+  82% { clip-path: inset(0 18% 0 0 round 999px); -webkit-clip-path: inset(0 18% 0 0 round 999px); }
+  83% { clip-path: inset(0 17% 0 0 round 999px); -webkit-clip-path: inset(0 17% 0 0 round 999px); }
+  84% { clip-path: inset(0 16% 0 0 round 999px); -webkit-clip-path: inset(0 16% 0 0 round 999px); }
+  85% { clip-path: inset(0 15% 0 0 round 999px); -webkit-clip-path: inset(0 15% 0 0 round 999px); }
+  86% { clip-path: inset(0 14% 0 0 round 999px); -webkit-clip-path: inset(0 14% 0 0 round 999px); }
+  87% { clip-path: inset(0 13% 0 0 round 999px); -webkit-clip-path: inset(0 13% 0 0 round 999px); }
+  88% { clip-path: inset(0 12% 0 0 round 999px); -webkit-clip-path: inset(0 12% 0 0 round 999px); }
+  89% { clip-path: inset(0 11% 0 0 round 999px); -webkit-clip-path: inset(0 11% 0 0 round 999px); }
+  90% { clip-path: inset(0 10% 0 0 round 999px); -webkit-clip-path: inset(0 10% 0 0 round 999px); }
+  91% { clip-path: inset(0 9% 0 0 round 999px); -webkit-clip-path: inset(0 9% 0 0 round 999px); }
+  92% { clip-path: inset(0 8% 0 0 round 999px); -webkit-clip-path: inset(0 8% 0 0 round 999px); }
+  93% { clip-path: inset(0 7% 0 0 round 999px); -webkit-clip-path: inset(0 7% 0 0 round 999px); }
+  94% { clip-path: inset(0 6% 0 0 round 999px); -webkit-clip-path: inset(0 6% 0 0 round 999px); }
+  95% { clip-path: inset(0 5% 0 0 round 999px); -webkit-clip-path: inset(0 5% 0 0 round 999px); }
+  96% { clip-path: inset(0 4% 0 0 round 999px); -webkit-clip-path: inset(0 4% 0 0 round 999px); }
+  97% { clip-path: inset(0 3% 0 0 round 999px); -webkit-clip-path: inset(0 3% 0 0 round 999px); }
+  98% { clip-path: inset(0 2% 0 0 round 999px); -webkit-clip-path: inset(0 2% 0 0 round 999px); }
+  99% { clip-path: inset(0 1% 0 0 round 999px); -webkit-clip-path: inset(0 1% 0 0 round 999px); }
+  99.1% { clip-path: inset(0 0.9% 0 0 round 999px); -webkit-clip-path: inset(0 0.9% 0 0 round 999px); }
+  99.2% { clip-path: inset(0 0.8% 0 0 round 999px); -webkit-clip-path: inset(0 0.8% 0 0 round 999px); }
+  99.3% { clip-path: inset(0 0.7% 0 0 round 999px); -webkit-clip-path: inset(0 0.7% 0 0 round 999px); }
+  99.4% { clip-path: inset(0 0.6% 0 0 round 999px); -webkit-clip-path: inset(0 0.6% 0 0 round 999px); }
+  99.5% { clip-path: inset(0 0.5% 0 0 round 999px); -webkit-clip-path: inset(0 0.5% 0 0 round 999px); }
+  99.6% { clip-path: inset(0 0.4% 0 0 round 999px); -webkit-clip-path: inset(0 0.4% 0 0 round 999px); }
+  99.7% { clip-path: inset(0 0.3% 0 0 round 999px); -webkit-clip-path: inset(0 0.3% 0 0 round 999px); }
+  99.8% { clip-path: inset(0 0.2% 0 0 round 999px); -webkit-clip-path: inset(0 0.2% 0 0 round 999px); }
+  99.9% { clip-path: inset(0 0.1% 0 0 round 999px); -webkit-clip-path: inset(0 0.1% 0 0 round 999px); }
+  100% {
+    clip-path: inset(0 0 0 0% round 999px);
+    -webkit-clip-path: inset(0 0 0 0% round 999px);
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Пауза - текст полностью виден, застывает */
+@keyframes title-pause {
+  0%, 100% {
+    clip-path: inset(0 0 0 0% round 999px);
+    -webkit-clip-path: inset(0 0 0 0% round 999px);
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Исчезновение текста слева направо - полностью исчезает */
+@keyframes title-disappear-left-to-right {
+  0% {
+    clip-path: inset(0 0 0 0% round 999px);
+    -webkit-clip-path: inset(0 0 0 0% round 999px);
+    transform: translateX(0);
+    opacity: 1;
+    filter: blur(0);
+  }
+  0.1% { clip-path: inset(0 0 0 0.1% round 999px); -webkit-clip-path: inset(0 0 0 0.1% round 999px); }
+  0.2% { clip-path: inset(0 0 0 0.2% round 999px); -webkit-clip-path: inset(0 0 0 0.2% round 999px); }
+  0.3% { clip-path: inset(0 0 0 0.3% round 999px); -webkit-clip-path: inset(0 0 0 0.3% round 999px); }
+  0.4% { clip-path: inset(0 0 0 0.4% round 999px); -webkit-clip-path: inset(0 0 0 0.4% round 999px); }
+  0.5% { clip-path: inset(0 0 0 0.5% round 999px); -webkit-clip-path: inset(0 0 0 0.5% round 999px); }
+  1% { clip-path: inset(0 0 0 1% round 999px); -webkit-clip-path: inset(0 0 0 1% round 999px); }
+  2% { clip-path: inset(0 0 0 2% round 999px); -webkit-clip-path: inset(0 0 0 2% round 999px); }
+  3% { clip-path: inset(0 0 0 3% round 999px); -webkit-clip-path: inset(0 0 0 3% round 999px); }
+  4% { clip-path: inset(0 0 0 4% round 999px); -webkit-clip-path: inset(0 0 0 4% round 999px); }
+  5% { clip-path: inset(0 0 0 5% round 999px); -webkit-clip-path: inset(0 0 0 5% round 999px); }
+  6% { clip-path: inset(0 0 0 6% round 999px); -webkit-clip-path: inset(0 0 0 6% round 999px); }
+  7% { clip-path: inset(0 0 0 7% round 999px); -webkit-clip-path: inset(0 0 0 7% round 999px); }
+  8% { clip-path: inset(0 0 0 8% round 999px); -webkit-clip-path: inset(0 0 0 8% round 999px); }
+  9% { clip-path: inset(0 0 0 9% round 999px); -webkit-clip-path: inset(0 0 0 9% round 999px); }
+  10% { clip-path: inset(0 0 0 10% round 999px); -webkit-clip-path: inset(0 0 0 10% round 999px); }
+  11% { clip-path: inset(0 0 0 11% round 999px); -webkit-clip-path: inset(0 0 0 11% round 999px); }
+  12% { clip-path: inset(0 0 0 12% round 999px); -webkit-clip-path: inset(0 0 0 12% round 999px); }
+  13% { clip-path: inset(0 0 0 13% round 999px); -webkit-clip-path: inset(0 0 0 13% round 999px); }
+  14% { clip-path: inset(0 0 0 14% round 999px); -webkit-clip-path: inset(0 0 0 14% round 999px); }
+  15% { clip-path: inset(0 0 0 15% round 999px); -webkit-clip-path: inset(0 0 0 15% round 999px); }
+  16% { clip-path: inset(0 0 0 16% round 999px); -webkit-clip-path: inset(0 0 0 16% round 999px); }
+  17% { clip-path: inset(0 0 0 17% round 999px); -webkit-clip-path: inset(0 0 0 17% round 999px); }
+  18% { clip-path: inset(0 0 0 18% round 999px); -webkit-clip-path: inset(0 0 0 18% round 999px); }
+  19% { clip-path: inset(0 0 0 19% round 999px); -webkit-clip-path: inset(0 0 0 19% round 999px); }
+  20% { clip-path: inset(0 0 0 20% round 999px); -webkit-clip-path: inset(0 0 0 20% round 999px); }
+  21% { clip-path: inset(0 0 0 21% round 999px); -webkit-clip-path: inset(0 0 0 21% round 999px); }
+  22% { clip-path: inset(0 0 0 22% round 999px); -webkit-clip-path: inset(0 0 0 22% round 999px); }
+  23% { clip-path: inset(0 0 0 23% round 999px); -webkit-clip-path: inset(0 0 0 23% round 999px); }
+  24% { clip-path: inset(0 0 0 24% round 999px); -webkit-clip-path: inset(0 0 0 24% round 999px); }
+  25% {
+    clip-path: inset(0 0 0 25% round 999px);
+    -webkit-clip-path: inset(0 0 0 25% round 999px);
+    transform: translateX(0);
+  }
+  26% { clip-path: inset(0 0 0 26% round 999px); -webkit-clip-path: inset(0 0 0 26% round 999px); }
+  27% { clip-path: inset(0 0 0 27% round 999px); -webkit-clip-path: inset(0 0 0 27% round 999px); }
+  28% { clip-path: inset(0 0 0 28% round 999px); -webkit-clip-path: inset(0 0 0 28% round 999px); }
+  29% { clip-path: inset(0 0 0 29% round 999px); -webkit-clip-path: inset(0 0 0 29% round 999px); }
+  30% { clip-path: inset(0 0 0 30% round 999px); -webkit-clip-path: inset(0 0 0 30% round 999px); }
+  31% { clip-path: inset(0 0 0 31% round 999px); -webkit-clip-path: inset(0 0 0 31% round 999px); }
+  32% { clip-path: inset(0 0 0 32% round 999px); -webkit-clip-path: inset(0 0 0 32% round 999px); }
+  33% { clip-path: inset(0 0 0 33% round 999px); -webkit-clip-path: inset(0 0 0 33% round 999px); }
+  34% { clip-path: inset(0 0 0 34% round 999px); -webkit-clip-path: inset(0 0 0 34% round 999px); }
+  35% { clip-path: inset(0 0 0 35% round 999px); -webkit-clip-path: inset(0 0 0 35% round 999px); }
+  36% { clip-path: inset(0 0 0 36% round 999px); -webkit-clip-path: inset(0 0 0 36% round 999px); }
+  37% { clip-path: inset(0 0 0 37% round 999px); -webkit-clip-path: inset(0 0 0 37% round 999px); }
+  38% { clip-path: inset(0 0 0 38% round 999px); -webkit-clip-path: inset(0 0 0 38% round 999px); }
+  39% { clip-path: inset(0 0 0 39% round 999px); -webkit-clip-path: inset(0 0 0 39% round 999px); }
+  40% { clip-path: inset(0 0 0 40% round 999px); -webkit-clip-path: inset(0 0 0 40% round 999px); }
+  41% { clip-path: inset(0 0 0 41% round 999px); -webkit-clip-path: inset(0 0 0 41% round 999px); }
+  42% { clip-path: inset(0 0 0 42% round 999px); -webkit-clip-path: inset(0 0 0 42% round 999px); }
+  43% { clip-path: inset(0 0 0 43% round 999px); -webkit-clip-path: inset(0 0 0 43% round 999px); }
+  44% { clip-path: inset(0 0 0 44% round 999px); -webkit-clip-path: inset(0 0 0 44% round 999px); }
+  45% { clip-path: inset(0 0 0 45% round 999px); -webkit-clip-path: inset(0 0 0 45% round 999px); }
+  46% { clip-path: inset(0 0 0 46% round 999px); -webkit-clip-path: inset(0 0 0 46% round 999px); }
+  47% { clip-path: inset(0 0 0 47% round 999px); -webkit-clip-path: inset(0 0 0 47% round 999px); }
+  48% { clip-path: inset(0 0 0 48% round 999px); -webkit-clip-path: inset(0 0 0 48% round 999px); }
+  49% { clip-path: inset(0 0 0 49% round 999px); -webkit-clip-path: inset(0 0 0 49% round 999px); }
+  50% {
+    clip-path: inset(0 0 0 50% round 999px);
+    -webkit-clip-path: inset(0 0 0 50% round 999px);
+    transform: translateX(0);
+  }
+  51% { clip-path: inset(0 0 0 51% round 999px); -webkit-clip-path: inset(0 0 0 51% round 999px); }
+  52% { clip-path: inset(0 0 0 52% round 999px); -webkit-clip-path: inset(0 0 0 52% round 999px); }
+  53% { clip-path: inset(0 0 0 53% round 999px); -webkit-clip-path: inset(0 0 0 53% round 999px); }
+  54% { clip-path: inset(0 0 0 54% round 999px); -webkit-clip-path: inset(0 0 0 54% round 999px); }
+  55% { clip-path: inset(0 0 0 55% round 999px); -webkit-clip-path: inset(0 0 0 55% round 999px); }
+  56% { clip-path: inset(0 0 0 56% round 999px); -webkit-clip-path: inset(0 0 0 56% round 999px); }
+  57% { clip-path: inset(0 0 0 57% round 999px); -webkit-clip-path: inset(0 0 0 57% round 999px); }
+  58% { clip-path: inset(0 0 0 58% round 999px); -webkit-clip-path: inset(0 0 0 58% round 999px); }
+  59% { clip-path: inset(0 0 0 59% round 999px); -webkit-clip-path: inset(0 0 0 59% round 999px); }
+  60% { clip-path: inset(0 0 0 60% round 999px); -webkit-clip-path: inset(0 0 0 60% round 999px); }
+  61% { clip-path: inset(0 0 0 61% round 999px); -webkit-clip-path: inset(0 0 0 61% round 999px); }
+  62% { clip-path: inset(0 0 0 62% round 999px); -webkit-clip-path: inset(0 0 0 62% round 999px); }
+  63% { clip-path: inset(0 0 0 63% round 999px); -webkit-clip-path: inset(0 0 0 63% round 999px); }
+  64% { clip-path: inset(0 0 0 64% round 999px); -webkit-clip-path: inset(0 0 0 64% round 999px); }
+  65% { clip-path: inset(0 0 0 65% round 999px); -webkit-clip-path: inset(0 0 0 65% round 999px); }
+  66% { clip-path: inset(0 0 0 66% round 999px); -webkit-clip-path: inset(0 0 0 66% round 999px); }
+  67% { clip-path: inset(0 0 0 67% round 999px); -webkit-clip-path: inset(0 0 0 67% round 999px); }
+  68% { clip-path: inset(0 0 0 68% round 999px); -webkit-clip-path: inset(0 0 0 68% round 999px); }
+  69% { clip-path: inset(0 0 0 69% round 999px); -webkit-clip-path: inset(0 0 0 69% round 999px); }
+  70% { clip-path: inset(0 0 0 70% round 999px); -webkit-clip-path: inset(0 0 0 70% round 999px); }
+  71% { clip-path: inset(0 0 0 71% round 999px); -webkit-clip-path: inset(0 0 0 71% round 999px); }
+  72% { clip-path: inset(0 0 0 72% round 999px); -webkit-clip-path: inset(0 0 0 72% round 999px); }
+  73% { clip-path: inset(0 0 0 73% round 999px); -webkit-clip-path: inset(0 0 0 73% round 999px); }
+  74% { clip-path: inset(0 0 0 74% round 999px); -webkit-clip-path: inset(0 0 0 74% round 999px); }
+  75% {
+    clip-path: inset(0 0 0 75% round 999px);
+    -webkit-clip-path: inset(0 0 0 75% round 999px);
+    transform: translateX(0);
+  }
+  76% { clip-path: inset(0 0 0 76% round 999px); -webkit-clip-path: inset(0 0 0 76% round 999px); }
+  77% { clip-path: inset(0 0 0 77% round 999px); -webkit-clip-path: inset(0 0 0 77% round 999px); }
+  78% { clip-path: inset(0 0 0 78% round 999px); -webkit-clip-path: inset(0 0 0 78% round 999px); }
+  79% { clip-path: inset(0 0 0 79% round 999px); -webkit-clip-path: inset(0 0 0 79% round 999px); }
+  80% { clip-path: inset(0 0 0 80% round 999px); -webkit-clip-path: inset(0 0 0 80% round 999px); }
+  81% { clip-path: inset(0 0 0 81% round 999px); -webkit-clip-path: inset(0 0 0 81% round 999px); }
+  82% { clip-path: inset(0 0 0 82% round 999px); -webkit-clip-path: inset(0 0 0 82% round 999px); }
+  83% { clip-path: inset(0 0 0 83% round 999px); -webkit-clip-path: inset(0 0 0 83% round 999px); }
+  84% { clip-path: inset(0 0 0 84% round 999px); -webkit-clip-path: inset(0 0 0 84% round 999px); }
+  85% { clip-path: inset(0 0 0 85% round 999px); -webkit-clip-path: inset(0 0 0 85% round 999px); }
+  86% { clip-path: inset(0 0 0 86% round 999px); -webkit-clip-path: inset(0 0 0 86% round 999px); }
+  87% { clip-path: inset(0 0 0 87% round 999px); -webkit-clip-path: inset(0 0 0 87% round 999px); }
+  88% { clip-path: inset(0 0 0 88% round 999px); -webkit-clip-path: inset(0 0 0 88% round 999px); }
+  89% { clip-path: inset(0 0 0 89% round 999px); -webkit-clip-path: inset(0 0 0 89% round 999px); }
+  90% { clip-path: inset(0 0 0 90% round 999px); -webkit-clip-path: inset(0 0 0 90% round 999px); }
+  91% { clip-path: inset(0 0 0 91% round 999px); -webkit-clip-path: inset(0 0 0 91% round 999px); }
+  92% { clip-path: inset(0 0 0 92% round 999px); -webkit-clip-path: inset(0 0 0 92% round 999px); }
+  93% { clip-path: inset(0 0 0 93% round 999px); -webkit-clip-path: inset(0 0 0 93% round 999px); }
+  94% { clip-path: inset(0 0 0 94% round 999px); -webkit-clip-path: inset(0 0 0 94% round 999px); }
+  95% { clip-path: inset(0 0 0 95% round 999px); -webkit-clip-path: inset(0 0 0 95% round 999px); }
+  96% { clip-path: inset(0 0 0 96% round 999px); -webkit-clip-path: inset(0 0 0 96% round 999px); }
+  97% { clip-path: inset(0 0 0 97% round 999px); -webkit-clip-path: inset(0 0 0 97% round 999px); }
+  98% { clip-path: inset(0 0 0 98% round 999px); -webkit-clip-path: inset(0 0 0 98% round 999px); }
+  99% { clip-path: inset(0 0 0 99% round 999px); -webkit-clip-path: inset(0 0 0 99% round 999px); }
+  99.1% { clip-path: inset(0 0 0 99.1% round 999px); -webkit-clip-path: inset(0 0 0 99.1% round 999px); }
+  99.2% { clip-path: inset(0 0 0 99.2% round 999px); -webkit-clip-path: inset(0 0 0 99.2% round 999px); }
+  99.3% { clip-path: inset(0 0 0 99.3% round 999px); -webkit-clip-path: inset(0 0 0 99.3% round 999px); }
+  99.4% { clip-path: inset(0 0 0 99.4% round 999px); -webkit-clip-path: inset(0 0 0 99.4% round 999px); }
+  99.5% { clip-path: inset(0 0 0 99.5% round 999px); -webkit-clip-path: inset(0 0 0 99.5% round 999px); }
+  99.6% { clip-path: inset(0 0 0 99.6% round 999px); -webkit-clip-path: inset(0 0 0 99.6% round 999px); }
+  99.7% { clip-path: inset(0 0 0 99.7% round 999px); -webkit-clip-path: inset(0 0 0 99.7% round 999px); }
+  99.8% { clip-path: inset(0 0 0 99.8% round 999px); -webkit-clip-path: inset(0 0 0 99.8% round 999px); }
+  99.9% { clip-path: inset(0 0 0 99.9% round 999px); -webkit-clip-path: inset(0 0 0 99.9% round 999px); }
+  100% {
+    clip-path: inset(0 0 0 100% round 999px);
+    -webkit-clip-path: inset(0 0 0 100% round 999px);
+    transform: translateX(0);
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* Override styles for nested page components in combined page */
+.page-section-wrapper > div[class*="min-h-screen"],
+.page-section-wrapper div[class*="min-h-screen"] {
+  min-height: 0 !important;
+  height: auto !important;
+  background: transparent !important;
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+}
+
+.page-section-wrapper > div[class*="flex"] {
+  display: block !important;
+}
+
+/* Premium UI/UX Enhancements */
+.premium-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.premium-glow {
+  box-shadow: 
+    0 0 20px rgba(74, 155, 140, 0.3),
+    0 0 40px rgba(74, 155, 140, 0.2),
+    0 0 60px rgba(74, 155, 140, 0.1);
+  transition: box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.premium-card {
+  backdrop-filter: blur(10px);
+  background: linear-gradient(
+    145deg,
+    rgba(240, 250, 248, 0.95),
+    rgba(235, 248, 246, 0.95)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 
+    14px 14px 35px rgba(0, 0, 0, 0.18),
+    -14px -14px 35px rgba(255, 255, 255, 1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.smooth-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Gradient text animation */
+@keyframes gradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.gradient-text {
+  background: linear-gradient(
+    90deg,
+    var(--primary-700),
+    var(--primary-600),
+    var(--primary-500),
+    var(--primary-600),
+    var(--primary-700)
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient 3s ease infinite;
+}
+
+/* Enhanced mood button styles */
+
+.neu-mood-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, box-shadow;
+}
+
+
+

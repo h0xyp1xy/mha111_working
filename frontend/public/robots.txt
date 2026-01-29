@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Allow: /login
+Allow: /register
+
+Disallow: /admin-panel
+Disallow: /admin-panel/login
+Disallow: /assessment
+Disallow: /subscription
+
+Sitemap: https://новый-я.рф/sitemap.xml
+Sitemap: https://novyy-ya.ru/sitemap.xml
